@@ -14,6 +14,7 @@
 		231FC1A01E402AA200E649A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231FC19E1E402AA200E649A8 /* LaunchScreen.storyboard */; };
 		231FC1A81E4032D300E649A8 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231FC1A71E4032D300E649A8 /* ArticleTableViewCell.swift */; };
 		231FC1AA1E4034D600E649A8 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231FC1A91E4034D600E649A8 /* Article.swift */; };
+		231FC1B01E42F40B00E649A8 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231FC1AF1E42F40B00E649A8 /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		231FC1A11E402AA200E649A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		231FC1A71E4032D300E649A8 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		231FC1A91E4034D600E649A8 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		231FC1AF1E42F40B00E649A8 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				231FC1A11E402AA200E649A8 /* Info.plist */,
 				231FC1A71E4032D300E649A8 /* ArticleTableViewCell.swift */,
 				231FC1A91E4034D600E649A8 /* Article.swift */,
+				231FC1AF1E42F40B00E649A8 /* WebViewController.swift */,
 			);
 			path = NewsReader;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				231FC1AA1E4034D600E649A8 /* Article.swift in Sources */,
 				231FC1981E402AA200E649A8 /* ViewController.swift in Sources */,
 				231FC1A81E4032D300E649A8 /* ArticleTableViewCell.swift in Sources */,
+				231FC1B01E42F40B00E649A8 /* WebViewController.swift in Sources */,
 				231FC1961E402AA200E649A8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

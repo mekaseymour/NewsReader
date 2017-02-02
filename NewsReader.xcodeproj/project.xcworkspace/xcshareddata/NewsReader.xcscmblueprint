@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "845B44920B8422958DF8F8B5B09B4E9756A8E509",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "845B44920B8422958DF8F8B5B09B4E9756A8E509" : 9223372036854775807,
+    "BA94B391BCB5457CAAA826A26773E1E1B1BED359" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1931346B-B112-4341-BA29-85E58FA2B1EF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "845B44920B8422958DF8F8B5B09B4E9756A8E509" : "NewsReader\/",
+    "BA94B391BCB5457CAAA826A26773E1E1B1BED359" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "NewsReader",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "NewsReader.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mekaseymour\/NewsReader.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "845B44920B8422958DF8F8B5B09B4E9756A8E509"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mekaseymour\/project.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BA94B391BCB5457CAAA826A26773E1E1B1BED359"
+    }
+  ]
+}

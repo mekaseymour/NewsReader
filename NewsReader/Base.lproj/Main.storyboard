@@ -128,5 +128,69 @@
             </objects>
             <point key="canvasLocation" x="132" y="602.24887556221893"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="Rhc-ja-DZo">
+            <objects>
+                <viewController storyboardIdentifier="web" id="Dyp-fJ-Ulm" customClass="WebViewController" customModule="NewsReader" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bp4-5o-lIf"/>
+                        <viewControllerLayoutGuide type="bottom" id="yOm-hr-P3Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jzy-Dl-OgT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mY0-QB-Rw1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                <color key="backgroundColor" red="0.2510861754" green="0.58840960259999997" blue="0.56514096260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="sor-WI-xAp"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ih7-Tq-bN2">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8l-cR-O27">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="0.2510861754" green="0.58840960259999997" blue="0.56514096260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Title" id="P0B-1f-bwl">
+                                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="fAY-by-cZG">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <segue destination="BYZ-38-t0r" kind="show" id="XoM-h3-IsY"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ih7-Tq-bN2" firstAttribute="top" secondItem="E8l-cR-O27" secondAttribute="bottom" id="5eH-Ye-az1"/>
+                            <constraint firstItem="mY0-QB-Rw1" firstAttribute="top" secondItem="Jzy-Dl-OgT" secondAttribute="top" id="8zO-6b-28i"/>
+                            <constraint firstItem="mY0-QB-Rw1" firstAttribute="leading" secondItem="Jzy-Dl-OgT" secondAttribute="leading" id="MT7-Vn-Cpi"/>
+                            <constraint firstItem="yOm-hr-P3Z" firstAttribute="top" secondItem="ih7-Tq-bN2" secondAttribute="bottom" id="P9S-me-P2Z"/>
+                            <constraint firstAttribute="trailing" secondItem="E8l-cR-O27" secondAttribute="trailing" id="T58-Ii-JL3"/>
+                            <constraint firstItem="ih7-Tq-bN2" firstAttribute="top" secondItem="E8l-cR-O27" secondAttribute="bottom" id="Ty1-yo-WKT"/>
+                            <constraint firstItem="E8l-cR-O27" firstAttribute="top" secondItem="Bp4-5o-lIf" secondAttribute="bottom" id="ZYp-cE-P3g"/>
+                            <constraint firstItem="ih7-Tq-bN2" firstAttribute="leading" secondItem="Jzy-Dl-OgT" secondAttribute="leading" id="mwi-hb-mhL"/>
+                            <constraint firstAttribute="trailing" secondItem="mY0-QB-Rw1" secondAttribute="trailing" id="r4m-ib-BLC"/>
+                            <constraint firstItem="E8l-cR-O27" firstAttribute="leading" secondItem="Jzy-Dl-OgT" secondAttribute="leading" id="sv7-pE-NeU"/>
+                            <constraint firstAttribute="trailing" secondItem="ih7-Tq-bN2" secondAttribute="trailing" id="zHi-Hf-CvZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="ih7-Tq-bN2" id="6UD-GG-OGq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jwy-FG-oQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="810.39999999999998" y="602.24887556221893"/>
+        </scene>
     </scenes>
 </document>
