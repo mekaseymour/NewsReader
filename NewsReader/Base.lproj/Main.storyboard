@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="181" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VtH-DG-258">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="181" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VtH-DG-258">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -88,20 +88,27 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Obo-hP-WCd">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
-                                <color key="backgroundColor" red="0.24915546180000001" green="0.58836060759999997" blue="0.56511670349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.49387097358703613" green="0.82711201906204224" blue="0.1285826563835144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Si1-ok-GPu"/>
                                 </constraints>
                             </view>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghn-Ux-ANz">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <color key="barTintColor" red="0.24915546180000001" green="0.58836060759999997" blue="0.56511670349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.49387097358703613" green="0.82711201906204224" blue="0.1285826563835144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="News Reader" id="3E5-NA-qEI"/>
+                                    <navigationItem title="News Reader" id="3E5-NA-qEI">
+                                        <barButtonItem key="leftBarButtonItem" title="Menu" id="0cf-AL-1G6">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="menuPressed:" destination="BYZ-38-t0r" id="ioW-dB-oUG"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -121,6 +128,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableNavBar" destination="Ghn-Ux-ANz" id="lYm-j8-5cG"/>
                         <outlet property="tableView" destination="VtH-DG-258" id="7ui-G5-zXH"/>
                     </connections>
                 </viewController>
@@ -142,7 +150,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mY0-QB-Rw1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
-                                <color key="backgroundColor" red="0.2510861754" green="0.58840960259999997" blue="0.56514096260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.49387097358703613" green="0.82711201906204224" blue="0.1285826563835144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="sor-WI-xAp"/>
                                 </constraints>
@@ -153,7 +161,7 @@
                             </webView>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8l-cR-O27">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <color key="barTintColor" red="0.2510861754" green="0.58840960259999997" blue="0.56514096260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.49387097358703613" green="0.82711201906204224" blue="0.1285826563835144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
@@ -186,6 +194,7 @@
                     </view>
                     <connections>
                         <outlet property="webView" destination="ih7-Tq-bN2" id="6UD-GG-OGq"/>
+                        <outlet property="webViewNavBar" destination="E8l-cR-O27" id="CEO-Ub-ZxH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jwy-FG-oQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>

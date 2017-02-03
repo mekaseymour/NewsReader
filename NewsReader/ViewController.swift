@@ -9,19 +9,21 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var tableNavBar: UINavigationBar!
 
     @IBOutlet weak var tableView: UITableView!
     
     var articles: [Article]? = []
+    var source = "techcrunch" // give source a default value of "techcrunch"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchArticles()
+        fetchArticles(fromSource: source)
     }
     
-    func fetchArticles() {
-        let urlRequest = URLRequest(url: URL(string: "https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=top&apiKey=55e63fb8ae124a108dc838cbf3cc337a")!)
+    func fetchArticles(fromSource provider: String) {
+        let urlRequest = URLRequest(url: URL(string: "https://newsapi.org/v1/articles?source=\(provider)&sortBy=top&apiKey=55e63fb8ae124a108dc838cbf3cc337a")!)
         
         let task = URLSession.shared.dataTask(with: urlRequest) {(data,response,error) in
             
@@ -67,6 +69,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         //to fire the URLSession
         task.resume()
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -75,7 +78,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.titleLabel.text = self.articles?[indexPath.item].headline
         cell.descriptionLabel.text = self.articles?[indexPath.item].desc
         cell.authorLabel.text = self.articles?[indexPath.item].author
-        cell.imgView.downloadImage(from: (self.articles?[indexPath.item].imageUrl)!)
+        cell.imgView.downloadImage(from: ((self.articles?[indexPath.item].imageUrl))!)
         
         
         return cell
@@ -99,6 +102,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.present(webVC, animated: true, completion: nil)
     }
+    
+    // create MenuManager object
+    let menuManager = MenuManager()
+    
+    @IBAction func menuPressed(_ sender: UIBarButtonItem) {
+        menuManager.openMenu()
+        menuManager.mainVC = self
+    }
+    
 }
 
 extension UIImageView {
@@ -108,7 +120,7 @@ extension UIImageView {
         let task = URLSession.shared.dataTask(with: urlRequest) {(data, response, error) in
             
             if error != nil {
-                print(error)
+                print(error ?? 0)
                 return
             }
             DispatchQueue.main.async {
