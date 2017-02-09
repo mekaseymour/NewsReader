@@ -13,13 +13,25 @@ class WebViewController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var webViewNavBar: UINavigationBar!
     
+    
     var url: String?
+    var navTitle: String?
+    var heartIcon: UIBarButtonItem?
+    var favoriteArticles = [String]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        webViewNavBar.topItem?.title = "top news"
+        //webViewNavBar.topItem?.title = navTitle
         webView.loadRequest(URLRequest(url: URL(string: url!)!))
+        
     }
-
+    
+    @IBAction func heartIconPressed(_ sender: UIBarButtonItem) {
+        favoriteArticles.append(url!)
+        print(favoriteArticles)
+    }
+    
 }
+

@@ -77,8 +77,8 @@ class MenuManager: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = mainVC {
-            vc.source = arrayOfSources[indexPath.item].lowercased()
-            vc.fetchArticles(fromSource: arrayOfSources[indexPath.item].lowercased())
+            vc.source = arrayOfSources[indexPath.item]
+            vc.fetchArticles(fromSource: arrayOfSources[indexPath.item])
             dismissMenu()
         }
     }
