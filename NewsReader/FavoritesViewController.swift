@@ -10,21 +10,22 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
 
-    @IBOutlet weak var favoritesTextField: UITextView!
+    @IBOutlet weak var outputLabel: UILabel!
+    
+    let webVC = WebViewController()
     
     var favoriteArticlesUrls = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getFavorites()
     }
     
-    func getFavorites() {
-        // create webVC object from WebViewController class
-        let webVC = WebViewController()
-        
-        self.favoriteArticlesUrls = webVC.favoriteArticles
-        print(favoriteArticlesUrls)
-        
+    override func viewDidAppear(_ animated: Bool) {
+        if let favoriteArticles = UserDefaults.standard.object(forKey: "articleUrl") as? String {
+            print(favoriteArticles)
+            outputLabel.text = favoriteArticles
         }
+    }
+ 
 }
