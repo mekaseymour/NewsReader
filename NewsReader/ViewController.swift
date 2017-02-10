@@ -29,7 +29,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let urlRequest = URLRequest(url: URL(string: "https://newsapi.org/v1/articles?source=\(lowercasedProvider)&sortBy=top&apiKey=55e63fb8ae124a108dc838cbf3cc337a")!)
         
         // set the NavBar title to the name of the current news source
-        //tableNavBar.topItem?.title = provider
+        title = provider
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "more", style: .plain, target: self, action: #selector(menuPressed(_:)))
         
         let task = URLSession.shared.dataTask(with: urlRequest) {(data,response,error) in
             
@@ -108,7 +109,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         webVC.navTitle = source
         //self.present(webVC, animated: true, completion: nil)
         navigationController?.pushViewController(webVC, animated: true)
-        print(navigationController)
     }
     
     // create MenuManager object

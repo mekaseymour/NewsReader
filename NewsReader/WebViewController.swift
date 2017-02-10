@@ -11,8 +11,6 @@ import UIKit
 class WebViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
-    @IBOutlet weak var webViewNavBar: UINavigationBar!
-    
     
     var url: String?
     var navTitle: String?
@@ -23,11 +21,15 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    
+        
+        //navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "heart"), style: .plain, target: self, action: #selector(heartIconPressed(_:)))
         //webViewNavBar.topItem?.title = navTitle
         webView.loadRequest(URLRequest(url: URL(string: url!)!))
         
     }
     
+  
     @IBAction func heartIconPressed(_ sender: UIBarButtonItem) {
         favoriteArticles.append(url!)
         print(favoriteArticles)
