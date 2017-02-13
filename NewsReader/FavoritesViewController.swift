@@ -22,9 +22,13 @@ class FavoritesViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let favoriteArticles = UserDefaults.standard.object(forKey: "articleUrl") as? String {
+        if let favoriteArticles = UserDefaults.standard.object(forKey: "favoriteArticles") as? Array<String> {
             print(favoriteArticles)
-            outputLabel.text = favoriteArticles
+            
+            // loop through favoriteArticles array
+            for article in favoriteArticles {
+                outputLabel.text = article
+            }
         }
     }
  

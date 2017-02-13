@@ -14,27 +14,32 @@ class WebViewController: UIViewController {
     
     var url: String?
     var navTitle: String?
-    var favoriteArticle: String?
-    //var heartIcon: UIBarButtonItem?
-    var favoriteArticles = [String]()
+    var articleTitle: String?
     
-    //let defaults = UserDefaults.standard
+    let defaults = UserDefaults.standard
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "heart"), style: .plain, target: self, action: #selector(heartIconPressed(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "white-heart"), style: .plain, target: self, action: #selector(heartIconPressed(_:)))
         webView.loadRequest(URLRequest(url: URL(string: url!)!))
         
     }
     
-  
+    
     @IBAction func heartIconPressed(_ sender: UIBarButtonItem) {
-        favoriteArticle = url!
-        //favoriteArticles.append(url!)
-        //print(favoriteArticles)
-        UserDefaults.standard.set(favoriteArticle, forKey: "articleUrl")
+        //favoritedArticle = url
+        //defaults.set(url, forKey: articleTitle!)
+        
+        if navigationItem.rightBarButtonItem?.image != #imageLiteral(resourceName: "red-heart") {
+            navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "red-heart")
+        }
+        else {
+            navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "white-heart")
+        }
+        
+        print(articleTitle ?? 0)
     }
     
 }
