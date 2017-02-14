@@ -26,5 +26,6 @@ class FavoritesViewController: UIViewController {
         let data = UserDefaults.standard.object(forKey: "favoritedArticles") as? [String]
         print(data ?? 0)
     }
+    
  
 }
