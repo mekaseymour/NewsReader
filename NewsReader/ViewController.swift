@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // set the NavBar title to the name of the current news source
         title = provider
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "more", style: .plain, target: self, action: #selector(menuPressed(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "more news", style: .plain, target: self, action: #selector(menuPressed(_:)))
         
         let task = URLSession.shared.dataTask(with: urlRequest) {(data,response,error) in
             

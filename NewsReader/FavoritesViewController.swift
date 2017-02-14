@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class FavoritesViewController: UIViewController {
 
@@ -22,14 +23,8 @@ class FavoritesViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let favoriteArticles = UserDefaults.standard.object(forKey: "favoriteArticles") as? Array<String> {
-            print(favoriteArticles)
-            
-            // loop through favoriteArticles array
-            for article in favoriteArticles {
-                outputLabel.text = article
-            }
-        }
+        let data = UserDefaults.standard.object(forKey: "favoritedArticles") as? [String]
+        print(data ?? 0)
     }
  
 }

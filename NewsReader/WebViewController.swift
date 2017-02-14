@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class WebViewController: UIViewController {
 
@@ -15,9 +16,11 @@ class WebViewController: UIViewController {
     var url: String?
     var navTitle: String?
     var articleTitle: String?
+    //var favoritedArticles = [String]()
+    
     
     let defaults = UserDefaults.standard
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +32,24 @@ class WebViewController: UIViewController {
     
     
     @IBAction func heartIconPressed(_ sender: UIBarButtonItem) {
-        //favoritedArticle = url
-        //defaults.set(url, forKey: articleTitle!)
+        
         
         if navigationItem.rightBarButtonItem?.image != #imageLiteral(resourceName: "red-heart") {
             navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "red-heart")
+            
+            //favoritedArticles.append(url!)
+            //defaults.set(favoritedArticles, forKey: "favoritedArticles")
+            
+            var storedData = UserDefaults.standard.array(forKey: "favoritedArticles") as! Array<String>
+            storedData.append(url!)
+            defaults.set(storedData, forKey: "favoritedArticles")
+            
         }
         else {
             navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "white-heart")
         }
         
-        print(articleTitle ?? 0)
+        print(UserDefaults.standard.array(forKey: "favoritedArticles") ?? [String]())
     }
     
 }
