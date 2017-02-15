@@ -7,15 +7,16 @@
 //
 
 import UIKit
-import CoreData
 
-class FavoritesViewController: UIViewController {
-
-    @IBOutlet weak var outputLabel: UILabel!
+class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var favoritesTable: UITableView!
     
     let webVC = WebViewController()
     
-    var favoriteArticlesUrls = [String]()
+    //var favoriteArticlesUrls = [String]()
+    
+    let data = UserDefaults.standard.object(forKey: "favoritedArticles") as? Array<String>
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +24,39 @@ class FavoritesViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let data = UserDefaults.standard.object(forKey: "favoritedArticles") as? [String]
+        
         print(data ?? 0)
     }
     
+    override func motionCancelled(_ motion: UIEventSubtype, with event: UIEvent?) {
+        
+    }
  
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = favoritesTable.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoritedTableViewCell
+        
+        cell.urlLabel.text = self.data?[indexPath.item]
+        
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.data?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let webVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "web") as! WebViewController
+        
+        webVC.url = self.data?[indexPath.item]
+        
+        navigationController?.pushViewController(webVC, animated: true)
+    }
+    
+    
 }

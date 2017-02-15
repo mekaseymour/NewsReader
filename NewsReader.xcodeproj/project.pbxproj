@@ -20,6 +20,7 @@
 		231FC1B61E44438600E649A8 /* BaseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231FC1B51E44438600E649A8 /* BaseViewCell.swift */; };
 		23BC75D61E46522200C5E77F /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BC75D51E46522200C5E77F /* MainMenuViewController.swift */; };
 		23BC75D81E4674F400C5E77F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BC75D71E4674F400C5E77F /* FavoritesViewController.swift */; };
+		23C650D81E53A919007D9099 /* FavoritedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C650D71E53A919007D9099 /* FavoritedTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		231FC1B51E44438600E649A8 /* BaseViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewCell.swift; sourceTree = "<group>"; };
 		23BC75D51E46522200C5E77F /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		23BC75D71E4674F400C5E77F /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		23C650D71E53A919007D9099 /* FavoritedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritedTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +79,6 @@
 				231FC19C1E402AA200E649A8 /* Assets.xcassets */,
 				231FC19E1E402AA200E649A8 /* LaunchScreen.storyboard */,
 				231FC1A11E402AA200E649A8 /* Info.plist */,
-				231FC1A71E4032D300E649A8 /* ArticleTableViewCell.swift */,
 				231FC1A91E4034D600E649A8 /* Article.swift */,
 				231FC1AF1E42F40B00E649A8 /* WebViewController.swift */,
 				231FC1B11E43A8C500E649A8 /* MenuManager.swift */,
@@ -85,6 +86,8 @@
 				231FC1B51E44438600E649A8 /* BaseViewCell.swift */,
 				23BC75D51E46522200C5E77F /* MainMenuViewController.swift */,
 				23BC75D71E4674F400C5E77F /* FavoritesViewController.swift */,
+				231FC1A71E4032D300E649A8 /* ArticleTableViewCell.swift */,
+				23C650D71E53A919007D9099 /* FavoritedTableViewCell.swift */,
 			);
 			path = NewsReader;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				231FC1B61E44438600E649A8 /* BaseViewCell.swift in Sources */,
 				231FC1AA1E4034D600E649A8 /* Article.swift in Sources */,
 				231FC1981E402AA200E649A8 /* ViewController.swift in Sources */,
+				23C650D81E53A919007D9099 /* FavoritedTableViewCell.swift in Sources */,
 				231FC1A81E4032D300E649A8 /* ArticleTableViewCell.swift in Sources */,
 				231FC1B01E42F40B00E649A8 /* WebViewController.swift in Sources */,
 				231FC1961E402AA200E649A8 /* AppDelegate.swift in Sources */,
