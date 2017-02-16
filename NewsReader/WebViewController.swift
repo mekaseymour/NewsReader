@@ -13,27 +13,42 @@ class WebViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
+    let defaults = UserDefaults.standard
+    
     var url: String?
     var navTitle: String?
     var articleTitle: String?
-    var favoritedArticles = [String]()
-    
-    
-    let defaults = UserDefaults.standard
-    
+    var favoritedArticles = [String] ()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //if userDefaults is nil, set it
+        
         // if url in user defaults array, set rightbarbuttonitem to filled in heart, else set to empty heart
         
-        let data = UserDefaults.standard.object(forKey: "favoritedArticles") as? [String]
-        if (data?.contains(url!))! {
+        if let storedData = UserDefaults.standard.array(forKey: "favoritedArticles") as? [String] {
+            favoritedArticles = storedData
+        } else {
+            UserDefaults.standard.set(favoritedArticles, forKey: "favoritedArticles")
+            print(UserDefaults.standard.array(forKey: "favoritedArticles") ?? [String]())
+            //favoritedArticles = UserDefaults.standard.array(forKey: "favoritedAticles") as? [String]
+        }
+        //let data = UserDefaults.standard.dictionary(forKey: "favoritedArticles") as? [String:String]
+        
+        //if (data?.values.contains(url!))! {
+        
+
+        if (favoritedArticles.contains(url!)) {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "red-heart"), style: .plain, target: self, action: #selector(heartIconPressed(_:)))
         }
         else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "white-heart"), style: .plain, target: self, action: #selector(heartIconPressed(_:)))
         }
+    
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "white-heart"), style: .plain, target: self, action: #selector(heartIconPressed(_:)))
         
         webView.loadRequest(URLRequest(url: URL(string: url!)!))
     }
@@ -42,7 +57,10 @@ class WebViewController: UIViewController {
     @IBAction func heartIconPressed(_ sender: UIBarButtonItem) {
         
         // set user defaults to array variable
-        var storedData = UserDefaults.standard.array(forKey: "favoritedArticles") as! Array<String>
+        
+        //var storedData = UserDefaults.standard.array(forKey: "favoritedArticles") as! Array<String>
+        
+        //var storedData = UserDefaults.standard.dictionary(forKey: "favoritedArticles") as? [String:String]
         
         // if article is favorited, save url to user defaults
         
@@ -50,9 +68,12 @@ class WebViewController: UIViewController {
             navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "red-heart")
             
             // append favorited url to user defaults
-            storedData.append(url!)
+            
+            favoritedArticles.append(url!)
+            //storedData?[articleTitle!] = url
+            
             // reset user defaults
-            defaults.set(storedData, forKey: "favoritedArticles")
+            defaults.set(favoritedArticles, forKey: "favoritedArticles")
             
         }
         
@@ -61,14 +82,18 @@ class WebViewController: UIViewController {
         else {
             navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "white-heart")
             
-            while storedData.contains(url!) {
-                let elementIndex = storedData.index(of: url!)
-                storedData.remove(at: elementIndex!)
-                defaults.set(storedData, forKey: "favoritedArticles")
+            while favoritedArticles.contains(url!) {
+            //while (storedData?.values.contains(url!))! {
+                let elementIndex = favoritedArticles.index(of: url!)
+                
+                favoritedArticles.remove(at: elementIndex!)
+                //storedData?.removeValue(forKey: url!)
+                defaults.set(favoritedArticles, forKey: "favoritedArticles")
             }
         }
         
         print(UserDefaults.standard.array(forKey: "favoritedArticles") ?? [String]())
+        //print(UserDefaults.standard.object(forKey: "favoritedArticles") ?? [String:String]())
     }
     
 }
