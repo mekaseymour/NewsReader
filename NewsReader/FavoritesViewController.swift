@@ -35,8 +35,10 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = favoritesTable.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoritedTableViewCell
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! ArticleTableViewCell
         
         cell.urlLabel.text = self.data?[indexPath.item]
+        //cell.titleLabel.text = self.data?[indexPath.item]
         
         return cell
     }
