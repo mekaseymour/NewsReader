@@ -88,7 +88,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.authorLabel.text = self.articles?[indexPath.item].author
         cell.imgView.downloadImage(from: ((self.articles?[indexPath.item].imageUrl))!)
         
-        
+        print(indexPath)
         return cell
     }
     

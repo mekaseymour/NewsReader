@@ -16,7 +16,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     //var favoriteArticlesUrls = [String]()
     
-    let data = UserDefaults.standard.object(forKey: "favoritedArticles") as? Array<String>
+    //let data = UserDefaults.standard.object(forKey: "favoritedArticles") as? Array<String>
+    let data = UserDefaults.standard.dictionary(forKey: "favoritedArticles") as? [String:[String]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +38,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = favoritesTable.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoritedTableViewCell
         //let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! ArticleTableViewCell
         
-        cell.urlLabel.text = self.data?[indexPath.item]
-        //cell.titleLabel.text = self.data?[indexPath.item]
+       cell.urlLabel.text = data?["titles"]?[indexPath.item]
         
         return cell
     }
@@ -48,17 +48,20 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.data?.count ?? 0
+        //return self.data?.count ?? 0
+        
+        return (data!["titles"]?.count)!
     }
     
+    /*
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let webVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "web") as! WebViewController
         
-        webVC.url = self.data?[indexPath.item]
+        //webVC.url = self.data?["urls"]?[indexPath.item]
         
         navigationController?.pushViewController(webVC, animated: true)
     }
-    
+    */
     
 }

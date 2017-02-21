@@ -17,11 +17,13 @@ class WebViewController: UIViewController {
     var navTitle: String?
     var articleTitle: String?
     var favoritedArticles = [String] ()
-    //var favoritedArticles = [String:[String]] -- declare a dictionary of arrays
-    // var favoritedUrls = [String]()  --  declare arrays to populate dictionary
-    // var favoritedTitles = [String]()  --  declare arrays to populate dictionary
-    // favoritedArticles["urls"] = favoritedUrls
-    // favoritedArticles["titles"] = favoritedTitles
+    
+    // <---- for dictionary ---->
+    
+    var favoritedArticlesDict = [String:[String]] ()
+    var favoritedUrls = [String] ()
+    var favoritedTitles = [String] ()
+    var favoritedSources = [String] ()
     
     let defaults = UserDefaults.standard
 
@@ -31,13 +33,20 @@ class WebViewController: UIViewController {
         
         //if userDefaults is nil, set it
         
-        if let storedData = UserDefaults.standard.array(forKey: "favoritedArticles") as? [String] {
-            favoritedArticles = storedData
+        //if let storedData = UserDefaults.standard.array(forKey: "favoritedArticles") as? [String] {
+        if let storedData = UserDefaults.standard.dictionary(forKey: "favoritedArticles") as? [String:[String]] {
+            //favoritedArticles = storedData
+            favoritedArticlesDict = storedData
+            favoritedUrls = storedData["urls"]!
+            favoritedTitles = storedData["titles"]!
+            favoritedSources = storedData["sources"]!
+            
         } else {
-            UserDefaults.standard.set(favoritedArticles, forKey: "favoritedArticles")
-            print(UserDefaults.standard.array(forKey: "favoritedArticles") ?? [String]())
+            //UserDefaults.standard.set(favoritedArticles, forKey: "favoritedArticles")
+            UserDefaults.standard.set(favoritedArticlesDict, forKey: "favoritedArticles")
+            //print(UserDefaults.standard.array(forKey: "favoritedArticles") ?? [String]())
+            print(UserDefaults.standard.object(forKey: "favoritedArticles") ?? [String:[String]]())
         }
-        //let data = UserDefaults.standard.dictionary(forKey: "favoritedArticles") as? [String:[String]]
         
         // display aprropriate heart icon
         getHeartIcon()
@@ -54,12 +63,6 @@ class WebViewController: UIViewController {
             navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "red-heart")
             addToFavorites()
             
-            // -- apped to arrays and set dictionary --
-            // favoritedUrls.append(url!)
-            // favoritedTitles.append(articleTitle!)
-            // favoritedArticles["urls"] = favoritedUrls
-            // favoritedArticles["titles"] = favoritedTitles
-            
         }
         
         // else (if the article is unfavorited), remove from user defaults
@@ -69,13 +72,14 @@ class WebViewController: UIViewController {
             removeFromFavorites()
         }
         
-        print(UserDefaults.standard.array(forKey: "favoritedArticles") ?? [String]())
+        //print(UserDefaults.standard.array(forKey: "favoritedArticles") ?? [String]())
         //print(UserDefaults.standard.object(forKey: "favoritedArticles") ?? [String:[String]]())
+        print(favoritedArticlesDict)
     }
     
     func getHeartIcon() {
          // if url in user defaults array, set rightbarbuttonitem to filled in heart, else set to empty heart
-        if (favoritedArticles.contains(url!)) {
+        if (favoritedUrls.contains(url!)) {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "red-heart"), style: .plain, target: self, action: #selector(heartIconPressed(_:)))
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "white-heart"), style: .plain, target: self, action: #selector(heartIconPressed(_:)))
@@ -83,20 +87,39 @@ class WebViewController: UIViewController {
     }
     
     func addToFavorites() {
-        favoritedArticles.append(url!)
-        defaults.set(favoritedArticles, forKey: "favoritedArticles")
+        //favoritedArticles.append(url!)
+        //defaults.set(favoritedArticles, forKey: "favoritedArticles")
+        
+        // <---- for dictionary ---->
+        favoritedUrls.append(url!)
+        favoritedTitles.append(articleTitle!)
+        favoritedSources.append(navTitle!)
+        favoritedArticlesDict["urls"] = favoritedUrls
+        favoritedArticlesDict["titles"] = favoritedTitles
+        favoritedArticlesDict["sources"] = favoritedSources
+        
+        defaults.set(favoritedArticlesDict, forKey: "favoritedArticles")
         
     }
     
     func removeFromFavorites() {
         // remove all occurances of article in favoritedArticles array
-        while favoritedArticles.contains(url!) {
-            //while (storedData?.values.contains(url!))! {
-            let elementIndex = favoritedArticles.index(of: url!)
+        //while favoritedArticles.contains(url!) {
+        while favoritedUrls.contains(url!) {
+            //let elementIndex = favoritedArticles.index(of: url!)
+            let elementIndex = favoritedUrls.index(of: url!)
             
-            favoritedArticles.remove(at: elementIndex!)
+            //favoritedArticles.remove(at: elementIndex!)
+            favoritedUrls.remove(at: elementIndex!)
+            favoritedTitles.remove(at: elementIndex!)
+            favoritedSources.remove(at: elementIndex!)
+            
+            favoritedArticlesDict["urls"] = favoritedUrls
+            favoritedArticlesDict["titles"] = favoritedTitles
+            favoritedArticlesDict["sources"] = favoritedSources
+            
             //storedData?.removeValue(forKey: url!)
-            defaults.set(favoritedArticles, forKey: "favoritedArticles")
+            defaults.set(favoritedArticlesDict, forKey: "favoritedArticles")
         }
     }
     
