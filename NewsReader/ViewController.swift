@@ -58,6 +58,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             article.desc = desc
                             article.url = url
                             article.imageUrl = urlToImage
+                            article.source = self.source
                 
                         }
                         //put article element in the articles array
@@ -106,12 +107,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // get the url and pass it to the webVC
         
-        webVC.url = self.articles?[indexPath.item].url
-        webVC.navTitle = source
+        webVC.article = self.articles?[indexPath.item]
+        
+        //webVC.url = self.articles?[indexPath.item].url
+        //webVC.navTitle = source
         //self.present(webVC, animated: true, completion: nil)
         
         // pass the article title to the webVC as well
-        webVC.articleTitle = self.articles?[indexPath.item].headline
+        //webVC.articleTitle = self.articles?[indexPath.item].headline
         
         navigationController?.pushViewController(webVC, animated: true)
     }

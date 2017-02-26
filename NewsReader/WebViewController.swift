@@ -13,9 +13,12 @@ class WebViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
-    var url: String?
-    var navTitle: String?
-    var articleTitle: String?
+    var article: Article?
+    
+    //var url: String?
+    //var navTitle: String?
+    //var articleTitle: String?
+    
     var favoritedArticles = [String] ()
     
     // <---- for dictionary ---->
@@ -26,6 +29,7 @@ class WebViewController: UIViewController {
     var favoritedSources = [String] ()
     
     let defaults = UserDefaults.standard
+    let urls = UserDefaults.standard.array(forKey: "urls") as? [String] ?? []
 
     
     override func viewDidLoad() {
@@ -33,7 +37,6 @@ class WebViewController: UIViewController {
         
         //if userDefaults is nil, set it
         
-        //if let storedData = UserDefaults.standard.array(forKey: "favoritedArticles") as? [String] {
         if let storedData = UserDefaults.standard.dictionary(forKey: "favoritedArticles") as? [String:[String]] {
             //favoritedArticles = storedData
             favoritedArticlesDict = storedData
@@ -42,16 +45,14 @@ class WebViewController: UIViewController {
             favoritedSources = storedData["sources"]!
             
         } else {
-            //UserDefaults.standard.set(favoritedArticles, forKey: "favoritedArticles")
             UserDefaults.standard.set(favoritedArticlesDict, forKey: "favoritedArticles")
-            //print(UserDefaults.standard.array(forKey: "favoritedArticles") ?? [String]())
             print(UserDefaults.standard.object(forKey: "favoritedArticles") ?? [String:[String]]())
         }
         
         // display aprropriate heart icon
         getHeartIcon()
         
-        webView.loadRequest(URLRequest(url: URL(string: url!)!))
+        webView.loadRequest(URLRequest(url: URL(string: (article?.url!)!)!))
     }
     
     
@@ -71,15 +72,14 @@ class WebViewController: UIViewController {
             navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "white-heart")
             removeFromFavorites()
         }
-        
-        //print(UserDefaults.standard.array(forKey: "favoritedArticles") ?? [String]())
-        //print(UserDefaults.standard.object(forKey: "favoritedArticles") ?? [String:[String]]())
-        print(favoritedArticlesDict)
     }
     
     func getHeartIcon() {
+        
+        let favoritedUrls: [String] = Article.fetchArticles().map{$0.url ?? ""}
+        
          // if url in user defaults array, set rightbarbuttonitem to filled in heart, else set to empty heart
-        if (favoritedUrls.contains(url!)) {
+        if (favoritedUrls.contains((article?.url)!)) {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "red-heart"), style: .plain, target: self, action: #selector(heartIconPressed(_:)))
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "white-heart"), style: .plain, target: self, action: #selector(heartIconPressed(_:)))
@@ -89,22 +89,27 @@ class WebViewController: UIViewController {
     func addToFavorites() {
         //favoritedArticles.append(url!)
         //defaults.set(favoritedArticles, forKey: "favoritedArticles")
+        article?.save()
         
         // <---- for dictionary ---->
-        favoritedUrls.append(url!)
-        favoritedTitles.append(articleTitle!)
-        favoritedSources.append(navTitle!)
-        favoritedArticlesDict["urls"] = favoritedUrls
-        favoritedArticlesDict["titles"] = favoritedTitles
-        favoritedArticlesDict["sources"] = favoritedSources
+        //favoritedUrls.append(url!)
+        //favoritedTitles.append(articleTitle!)
+        //favoritedSources.append(navTitle!)
+        //favoritedArticlesDict["urls"] = favoritedUrls
+        //favoritedArticlesDict["titles"] = favoritedTitles
+        //favoritedArticlesDict["sources"] = favoritedSources
         
-        defaults.set(favoritedArticlesDict, forKey: "favoritedArticles")
+        //defaults.set(favoritedArticlesDict, forKey: "favoritedArticles")
         
     }
     
     func removeFromFavorites() {
+        
+        article?.remove()
         // remove all occurances of article in favoritedArticles array
         //while favoritedArticles.contains(url!) {
+        
+        /*
         while favoritedUrls.contains(url!) {
             //let elementIndex = favoritedArticles.index(of: url!)
             let elementIndex = favoritedUrls.index(of: url!)
@@ -120,8 +125,9 @@ class WebViewController: UIViewController {
             
             //storedData?.removeValue(forKey: url!)
             defaults.set(favoritedArticlesDict, forKey: "favoritedArticles")
+         */
         }
     }
     
-}
+
 

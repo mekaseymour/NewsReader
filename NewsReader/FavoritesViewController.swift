@@ -14,10 +14,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     let webVC = WebViewController()
     
-    //var favoriteArticlesUrls = [String]()
-    
-    //let data = UserDefaults.standard.object(forKey: "favoritedArticles") as? Array<String>
-    let data = UserDefaults.standard.dictionary(forKey: "favoritedArticles") as? [String:[String]]
+    let articles = Article.fetchArticles()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +23,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidAppear(_ animated: Bool) {
         
-        print(data ?? 0)
     }
     
     override func motionCancelled(_ motion: UIEventSubtype, with event: UIEvent?) {
@@ -36,9 +32,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = favoritesTable.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoritedTableViewCell
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! ArticleTableViewCell
         
-       cell.urlLabel.text = data?["titles"]?[indexPath.item]
+       cell.urlLabel.text = articles[indexPath.item].headline
         
         return cell
     }
@@ -48,20 +43,20 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return self.data?.count ?? 0
+        //return self.articles?.count ?? 0
         
-        return (data!["titles"]?.count)!
+        return articles.count
     }
     
-    /*
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let webVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "web") as! WebViewController
         
-        //webVC.url = self.data?["urls"]?[indexPath.item]
+        webVC.article = self.articles[indexPath.item]
         
         navigationController?.pushViewController(webVC, animated: true)
     }
-    */
+    
     
 }
