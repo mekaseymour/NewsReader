@@ -16,8 +16,15 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     let articles = Article.fetchArticles()
     
+    var favorited_articles_headlines: [String] = []
+    
+    var reversed_order_headlines: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        favorited_articles_headlines = Article.fetchArticles().map{$0.headline ?? ""}
+        reversed_order_headlines = favorited_articles_headlines.reversed()
 
     }
     
@@ -33,7 +40,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
         let cell = favoritesTable.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoritedTableViewCell
         
-       cell.urlLabel.text = articles[indexPath.item].headline
+        //cell.urlLabel.text = articles[indexPath.item].headline
+        cell.urlLabel.text = reversed_order_headlines[indexPath.item]
         
         return cell
     }

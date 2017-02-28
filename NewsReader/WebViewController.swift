@@ -15,10 +15,6 @@ class WebViewController: UIViewController {
     
     var article: Article?
     
-    //var url: String?
-    //var navTitle: String?
-    //var articleTitle: String?
-    
     var favoritedArticles = [String] ()
     
     // <---- for dictionary ---->
@@ -87,47 +83,16 @@ class WebViewController: UIViewController {
     }
     
     func addToFavorites() {
-        //favoritedArticles.append(url!)
-        //defaults.set(favoritedArticles, forKey: "favoritedArticles")
+
         article?.save()
-        
-        // <---- for dictionary ---->
-        //favoritedUrls.append(url!)
-        //favoritedTitles.append(articleTitle!)
-        //favoritedSources.append(navTitle!)
-        //favoritedArticlesDict["urls"] = favoritedUrls
-        //favoritedArticlesDict["titles"] = favoritedTitles
-        //favoritedArticlesDict["sources"] = favoritedSources
-        
-        //defaults.set(favoritedArticlesDict, forKey: "favoritedArticles")
         
     }
     
     func removeFromFavorites() {
         
         article?.remove()
-        // remove all occurances of article in favoritedArticles array
-        //while favoritedArticles.contains(url!) {
-        
-        /*
-        while favoritedUrls.contains(url!) {
-            //let elementIndex = favoritedArticles.index(of: url!)
-            let elementIndex = favoritedUrls.index(of: url!)
-            
-            //favoritedArticles.remove(at: elementIndex!)
-            favoritedUrls.remove(at: elementIndex!)
-            favoritedTitles.remove(at: elementIndex!)
-            favoritedSources.remove(at: elementIndex!)
-            
-            favoritedArticlesDict["urls"] = favoritedUrls
-            favoritedArticlesDict["titles"] = favoritedTitles
-            favoritedArticlesDict["sources"] = favoritedSources
-            
-            //storedData?.removeValue(forKey: url!)
-            defaults.set(favoritedArticlesDict, forKey: "favoritedArticles")
-         */
-        }
+
     }
-    
+}
 
 
