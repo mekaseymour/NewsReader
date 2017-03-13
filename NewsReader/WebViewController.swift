@@ -31,20 +31,6 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //if userDefaults is nil, set it
-        
-        if let storedData = UserDefaults.standard.dictionary(forKey: "favoritedArticles") as? [String:[String]] {
-            //favoritedArticles = storedData
-            favoritedArticlesDict = storedData
-            favoritedUrls = storedData["urls"]!
-            favoritedTitles = storedData["titles"]!
-            favoritedSources = storedData["sources"]!
-            
-        } else {
-            UserDefaults.standard.set(favoritedArticlesDict, forKey: "favoritedArticles")
-            print(UserDefaults.standard.object(forKey: "favoritedArticles") ?? [String:[String]]())
-        }
-        
         // display aprropriate heart icon
         getHeartIcon()
         

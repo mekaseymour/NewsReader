@@ -109,13 +109,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         webVC.article = self.articles?[indexPath.item]
         
-        //webVC.url = self.articles?[indexPath.item].url
-        //webVC.navTitle = source
-        //self.present(webVC, animated: true, completion: nil)
-        
-        // pass the article title to the webVC as well
-        //webVC.articleTitle = self.articles?[indexPath.item].headline
-        
         navigationController?.pushViewController(webVC, animated: true)
     }
     

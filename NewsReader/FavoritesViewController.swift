@@ -14,22 +14,22 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     let webVC = WebViewController()
     
-    let articles = Article.fetchArticles()
+    var articles = Article.fetchArticles()
     
     var favorited_articles_headlines: [String] = []
     
     var reversed_order_headlines: [String] = []
     
+    var reversed_articles: [Article] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        favorited_articles_headlines = Article.fetchArticles().map{$0.headline ?? ""}
-        reversed_order_headlines = favorited_articles_headlines.reversed()
 
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadArticles()
     }
     
     override func motionCancelled(_ motion: UIEventSubtype, with event: UIEvent?) {
@@ -40,8 +40,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
         let cell = favoritesTable.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoritedTableViewCell
         
-        //cell.urlLabel.text = articles[indexPath.item].headline
-        cell.urlLabel.text = reversed_order_headlines[indexPath.item]
+        cell.urlLabel.text = reversed_articles[indexPath.item].headline
+        //cell.urlLabel.text = reversed_order_headlines[indexPath.item]
         
         return cell
     }
@@ -53,7 +53,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return self.articles?.count ?? 0
         
-        return articles.count
+        return reversed_articles.count
     }
     
     
@@ -61,9 +61,29 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
         let webVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "web") as! WebViewController
         
-        webVC.article = self.articles[indexPath.item]
+        webVC.article = self.reversed_articles[indexPath.item]
         
         navigationController?.pushViewController(webVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            reversed_articles[indexPath.item].remove()
+            
+            reloadArticles()
+        }
+    }
+    
+    // MARK: - Helper Methods
+    private func reloadArticles() {
+        articles = Article.fetchArticles()
+        reversed_articles = articles.reversed()
+        
+        favoritesTable.reloadData()
     }
     
     
