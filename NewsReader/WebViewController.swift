@@ -20,9 +20,6 @@ class WebViewController: UIViewController {
     // <---- for dictionary ---->
     
     var favoritedArticlesDict = [String:[String]] ()
-    var favoritedUrls = [String] ()
-    var favoritedTitles = [String] ()
-    var favoritedSources = [String] ()
     
     let defaults = UserDefaults.standard
     let urls = UserDefaults.standard.array(forKey: "urls") as? [String] ?? []
@@ -30,6 +27,8 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = article?.headline
         
         // display aprropriate heart icon
         getHeartIcon()
